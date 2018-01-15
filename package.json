@@ -1,6 +1,6 @@
 {
     "name": "@vladimir31415/adal-angular5",
-    "version": "1.0.42",
+    "version": "1.0.43",
     "description": "ADAL wrapper for Angular5.",
     "main": "index.js",
     "scripts": {
@@ -45,8 +45,5 @@
         "merge2": "^1.0.3",
         "tslint": "^5.7.0",
         "typescript": "^2.4.2"
-    },
-    "files": [
-        "dist"
-    ]
+    }
 }
