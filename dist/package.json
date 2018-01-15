@@ -1,6 +1,6 @@
 {
-  "name": "adal-angular5",
-  "version": "1.0.41",
+  "name": "@vladimir31415/adal-angular5",
+  "version": "1.0.42",
   "description": "ADAL wrapper for Angular5.",
   "main": "index.js",
   "repository": {
