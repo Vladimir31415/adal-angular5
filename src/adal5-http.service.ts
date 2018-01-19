@@ -182,7 +182,7 @@ export class Adal5HTTPService {
   private sendRequest(method: string, url: string, options: {
     body?: any;
     // headers?: HttpHeaders;
-    headers?: HttpHeaders;
+    headers?: any
     reportProgress?: boolean;
     observe: 'response';
     params?: HttpParams | { [param: string]: string | string[]; };
@@ -196,7 +196,7 @@ export class Adal5HTTPService {
       if (this.service.userInfo.authenticated) {
         authenticatedCall = this.service.acquireToken(resource)
           .flatMap(token => {
-            options.headers = new HttpHeaders().append('Authorization', 'Bearer ' + token);
+            options.headers = new HttpHeaders(options.headers).append('Authorization', 'Bearer ' + token);
             return this.http.request(method, url, options)
               .catch(this.handleError);
           });

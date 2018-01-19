@@ -136,7 +136,7 @@ var Adal5HTTPService = (function () {
             if (this.service.userInfo.authenticated) {
                 authenticatedCall = this.service.acquireToken(resource)
                     .flatMap(function (token) {
-                    options.headers = new http_1.HttpHeaders().append('Authorization', 'Bearer ' + token);
+                    options.headers = new http_1.HttpHeaders(options.headers).append('Authorization', 'Bearer ' + token);
                     return _this.http.request(method, url, options)
                         .catch(_this.handleError);
                 });
