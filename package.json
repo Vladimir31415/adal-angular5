@@ -1,6 +1,6 @@
 {
     "name": "gtad-adal-angular5",
-    "version": "1.1.8",
+    "version": "1.1.9",
     "description": "ADAL wrapper for Angular5. Based on adal-angular5",
     "main": "index.js",
     "scripts": {
