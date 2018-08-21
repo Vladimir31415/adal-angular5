@@ -15,7 +15,7 @@ var Rx_1 = require("rxjs/Rx");
  * @export
  * @class Adal5Service
  */
-var Adal5Service = (function () {
+var Adal5Service = /** @class */ (function () {
     /**
      * Creates an instance of Adal5Service.
      *
@@ -207,9 +207,9 @@ var Adal5Service = (function () {
      * @memberOf Adal5Service
      */
     Adal5Service.prototype.getUser = function () {
-        var _this = this;
+        var _this_1 = this;
         return Rx_1.Observable.bindCallback(function (cb) {
-            _this.adalContext.getUser(function (error, user) {
+            _this_1.adalContext.getUser(function (error, user) {
                 if (error) {
                     this.adalContext.error('Error when getting user', error);
                     cb(null);

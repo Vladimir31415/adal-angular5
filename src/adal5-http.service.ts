@@ -196,10 +196,7 @@ export class Adal5HTTPService {
       if (this.service.userInfo.authenticated) {
         authenticatedCall = this.service.acquireToken(resource)
           .flatMap(token => {
-            if (!options) {
-              options.headers = new HttpHeaders();
-            }
-            options.headers = options.headers.append('Authorization', 'Bearer ' + token);
+            options.headers = new HttpHeaders(options.headers).append('Authorization', 'Bearer ' + token);
             return this.http.request(method, url, options)
               .catch(this.handleError);
           });

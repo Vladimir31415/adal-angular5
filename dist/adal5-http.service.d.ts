@@ -161,7 +161,7 @@ export declare class Adal5HTTPService {
      *
      * @memberOf Adal5HTTPService
      */
-    private sendRequest(method, url, options);
+    private sendRequest;
     /**
      *
      *
@@ -171,5 +171,5 @@ export declare class Adal5HTTPService {
      *
      * @memberOf Adal5HTTPService
      */
-    private handleError(error);
+    private handleError;
 }

@@ -100,7 +100,7 @@ export declare class Adal5Service {
      *
      * @memberOf Adal5Service
      */
-    acquireToken(resource: string): Observable<string>;
+    acquireToken(resource: string): any;
     /**
      *
      *
@@ -164,5 +164,5 @@ export declare class Adal5Service {
      *
      * @memberOf Adal5Service
      */
-    private updateDataFromCache(resource);
+    private updateDataFromCache;
 }

@@ -6,8 +6,8 @@
     "experimentalDecorators": true,
     "outDir": "dist/",
     "rootDir": "src/",
-    "sourceMap": true,
-    " declaration": true,
+    "sourceMap": false,
+    "declaration": true,
     "moduleResolution": "node",
     "removeComments": false,
     "lib": [
@@ -17,16 +17,16 @@
     "types": [
       "adal"
     ],
-    "exclude": [
-      "node_modules",
-      "dist"
-    ],
     "typeRoots": [
       "./src"
     ],
-    "skipLibCheck": false,
-     "globalDependencies": {
-        "adal": "file:./src/adal.d.ts"
-    }
+    "skipLibCheck": false
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "globalDependencies": {
+    "adal": "file:./src/adal.d.ts"
   }
 }
