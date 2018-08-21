@@ -1,6 +1,6 @@
 import { adal } from 'adal-angular';
 import { Adal5User } from './adal5-user';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 /**
  *
  *
@@ -100,7 +100,7 @@ export declare class Adal5Service {
      *
      * @memberOf Adal5Service
      */
-    acquireToken(resource: string): any;
+    acquireToken(resource: string): Observable<any>;
     /**
      *
      *

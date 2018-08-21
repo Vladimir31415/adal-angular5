@@ -1,7 +1,8 @@
-import { Observable } from 'rxjs/Rx';
 import { Adal5Service } from './adal5.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import {catchError, mergeMap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 /**
  *
@@ -191,20 +192,27 @@ export class Adal5HTTPService {
   }): Observable<string> {
 
     const resource = this.service.GetResourceForEndpoint(url);
-    let authenticatedCall: Observable<string>;
+    let authenticatedCall: Observable<any>;
     if (resource) {
       if (this.service.userInfo.authenticated) {
         authenticatedCall = this.service.acquireToken(resource)
-          .flatMap(token => {
-            options.headers = new HttpHeaders(options.headers).append('Authorization', 'Bearer ' + token);
-            return this.http.request(method, url, options)
-              .catch(this.handleError);
-          });
+            .pipe(
+              mergeMap(token => {
+                options.headers = new HttpHeaders(options.headers).append('Authorization', 'Bearer ' + token);
+                return this.http.request(method, url, options)
+                  .pipe(
+                    catchError(this.handleError)
+                  )
+              })
+            );
       } else {
         authenticatedCall = Observable.throw(new Error('User Not Authenticated.'));
       }
     } else {
-      authenticatedCall = this.http.request(method, url, options).catch(this.handleError);
+      authenticatedCall = this.http.request(method, url, options)
+        .pipe(
+          catchError(this.handleError)
+        )
     }
 
     return authenticatedCall;

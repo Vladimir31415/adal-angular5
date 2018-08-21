@@ -1,6 +1,6 @@
-import { Observable } from 'rxjs/Rx';
 import { Adal5Service } from './adal5.service';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
 /**
  *
  *

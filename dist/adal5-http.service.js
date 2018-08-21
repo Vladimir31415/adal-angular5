@@ -6,9 +6,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var Rx_1 = require("rxjs/Rx");
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/common/http");
+var operators_1 = require("rxjs/operators");
+var rxjs_1 = require("rxjs");
 /**
  *
  *
@@ -135,18 +136,19 @@ var Adal5HTTPService = /** @class */ (function () {
         if (resource) {
             if (this.service.userInfo.authenticated) {
                 authenticatedCall = this.service.acquireToken(resource)
-                    .flatMap(function (token) {
+                    .pipe(operators_1.mergeMap(function (token) {
                     options.headers = new http_1.HttpHeaders(options.headers).append('Authorization', 'Bearer ' + token);
                     return _this.http.request(method, url, options)
-                        .catch(_this.handleError);
-                });
+                        .pipe(operators_1.catchError(_this.handleError));
+                }));
             }
             else {
-                authenticatedCall = Rx_1.Observable.throw(new Error('User Not Authenticated.'));
+                authenticatedCall = rxjs_1.Observable.throw(new Error('User Not Authenticated.'));
             }
         }
         else {
-            authenticatedCall = this.http.request(method, url, options).catch(this.handleError);
+            authenticatedCall = this.http.request(method, url, options)
+                .pipe(operators_1.catchError(this.handleError));
         }
         return authenticatedCall;
     };
@@ -163,7 +165,7 @@ var Adal5HTTPService = /** @class */ (function () {
         // In a real world app, we might send the error to remote logging infrastructure
         var errMsg = error.message || 'Server error';
         console.error(JSON.stringify(error)); // log to console instead
-        return Rx_1.Observable.throw(error);
+        return rxjs_1.Observable.throw(error);
     };
     var Adal5HTTPService_1;
     Adal5HTTPService = Adal5HTTPService_1 = __decorate([
